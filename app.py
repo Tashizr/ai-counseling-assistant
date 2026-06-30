@@ -1,5 +1,5 @@
 """
-AI Counseling Assistant — Streamlit Application Entry Point
+AI Counseling Assistant — Streamlit Application
 
 Locally-running AI counseling assistant for education, research,
 and software engineering practice only.
