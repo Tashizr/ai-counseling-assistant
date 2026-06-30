@@ -15,16 +15,19 @@ def get_custom_css() -> str:
         background: #171717;
     }
     header[data-testid="stHeader"] { background: #171717; }
-    header[data-testid="stHeader"] * { visibility: hidden; }
     footer { visibility: hidden; }
     .stDeployButton { display: none; }
     #MainMenu { visibility: hidden; }
 
     /* Layout */
     .block-container {
-        padding-top: 3.5rem !important;
+        padding-top: 2.5rem !important;
         padding-bottom: 4rem !important;
         max-width: 760px !important;
+        margin-top: 0 !important;
+    }
+    .main-header {
+        margin-top: 0.5rem;
     }
 
     /* Header */
