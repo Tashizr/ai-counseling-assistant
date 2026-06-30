@@ -3,15 +3,21 @@ Knowledge base management and statistics page.
 """
 
 import streamlit as st
+from ui.styles import get_custom_css
 
 
 def render_knowledge_base_page() -> None:
     """Render the knowledge base page."""
-    st.title("Knowledge Base")
+    st.markdown(get_custom_css(), unsafe_allow_html=True)
 
     st.markdown(
-        "View statistics and manage the educational content used for "
-        "retrieval-augmented generation."
+        """
+        <div class="main-header">
+            <h1>📚 Knowledge Base</h1>
+            <p>Educational content used for retrieval-augmented generation.</p>
+        </div>
+        """,
+        unsafe_allow_html=True,
     )
 
     if "vector_store" in st.session_state:
@@ -60,7 +66,14 @@ def render_knowledge_base_page() -> None:
 
     st.markdown("---")
     st.markdown(
-        "**Supported Topics:** CBT, DBT, Crisis Intervention, "
-        "Motivational Interviewing, Emotional Intelligence, "
-        "Active Listening, Positive Psychology, Mindfulness"
+        """
+        **Supported Topics**
+        - CBT & DBT
+        - Crisis Intervention
+        - Motivational Interviewing
+        - Emotional Intelligence
+        - Active Listening
+        - Positive Psychology
+        - Mindfulness
+        """
     )

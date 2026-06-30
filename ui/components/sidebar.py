@@ -15,27 +15,59 @@ def render_sidebar() -> str:
     settings = get_settings()
 
     with st.sidebar:
-        st.title(f"{settings.app_icon} {settings.app_title}")
-        st.markdown("---")
-
         st.markdown(
-            "**Disclaimer:** This is an AI assistant for educational "
-            "purposes only. Not a replacement for professional care."
+            f"""
+            <div style="text-align: center; padding: 1rem 0;">
+                <div style="font-size: 2.5rem;">🧠</div>
+                <h2 style="color: white; margin: 0; font-size: 1.1rem; font-weight: 600;">
+                    AI Counseling
+                </h2>
+                <p style="color: #888; font-size: 0.75rem; margin: 0.25rem 0 0 0;">
+                    Safe space for support
+                </p>
+            </div>
+            """,
+            unsafe_allow_html=True,
         )
+
         st.markdown("---")
 
         page = st.radio(
-            "Navigation",
-            ["Chat", "Mood Tracker", "Session History", "Memory Viewer",
-             "Knowledge Base", "Settings", "Debug"],
+            "Navigate",
+            ["💬 Chat", "📊 Mood Tracker", "📋 Session History", "🧠 Memory",
+             "📚 Knowledge Base", "⚙️ Settings", "🔧 Debug"],
             label_visibility="collapsed",
         )
 
         st.markdown("---")
 
-        if settings.enable_debug:
-            st.caption("Debug mode: ON")
+        st.markdown(
+            """
+            <div style="padding: 0.5rem; font-size: 0.75rem; color: #666; line-height: 1.4;">
+                <strong style="color: #999;">Reminder</strong><br>
+                I'm an AI assistant for educational purposes. Not a replacement for professional care.
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
 
-        st.caption("Local-first | Privacy-focused")
+        st.markdown("<br>", unsafe_allow_html=True)
 
-    return page
+        st.markdown(
+            '<div style="text-align: center; font-size: 0.7rem; color: #555;">'
+            'Local-first | Privacy-focused'
+            '</div>',
+            unsafe_allow_html=True,
+        )
+
+    # Clean page name for routing
+    page_map = {
+        "💬 Chat": "Chat",
+        "📊 Mood Tracker": "Mood Tracker",
+        "📋 Session History": "Session History",
+        "🧠 Memory": "Memory Viewer",
+        "📚 Knowledge Base": "Knowledge Base",
+        "⚙️ Settings": "Settings",
+        "🔧 Debug": "Debug",
+    }
+    return page_map.get(page, "Chat")

@@ -3,12 +3,22 @@ Session history page for viewing past conversations.
 """
 
 import streamlit as st
-from datetime import datetime
+from ui.styles import get_custom_css
 
 
 def render_session_history_page() -> None:
     """Render the session history page."""
-    st.title("Session History")
+    st.markdown(get_custom_css(), unsafe_allow_html=True)
+
+    st.markdown(
+        """
+        <div class="main-header">
+            <h1>📋 Session History</h1>
+            <p>Review your past conversations and progress.</p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
     if "session_manager" not in st.session_state:
         st.warning("Please initialize the application first.")
@@ -25,7 +35,7 @@ def render_session_history_page() -> None:
 
     for conv in conversations:
         with st.expander(
-            f"Session: {conv['started_at'][:10]} | "
+            f"🗓️ {conv['started_at'][:10]} | "
             f"Risk: {conv.get('risk_level_max', 'low')}"
         ):
             if conv.get("summary"):

@@ -28,15 +28,19 @@ def render_mood_chart(mood_data: list[dict]) -> None:
             height=300,
         )
 
-        avg_mood = df["mood_score"].mean()
-        st.metric("Average Mood", f"{avg_mood:.1f}/10")
-
-        latest = df["mood_score"].iloc[-1]
-        if len(df) > 1:
-            previous = df["mood_score"].iloc[-2]
-            delta = latest - previous
-            st.metric("Latest Mood", f"{latest}/10", delta=f"{delta:+.1f}")
-        else:
-            st.metric("Latest Mood", f"{latest}/10")
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            avg_mood = df["mood_score"].mean()
+            st.metric("Average", f"{avg_mood:.1f}/10")
+        with col2:
+            latest = df["mood_score"].iloc[-1]
+            st.metric("Latest", f"{latest}/10")
+        with col3:
+            if len(df) > 1:
+                previous = df["mood_score"].iloc[-2]
+                delta = latest - previous
+                st.metric("Change", f"{delta:+.1f}")
+            else:
+                st.metric("Sessions", f"{len(df)}")
     else:
         st.info("Mood data format is invalid.")

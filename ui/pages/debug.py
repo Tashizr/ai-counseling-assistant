@@ -4,53 +4,66 @@ Debug panel for developer diagnostics.
 
 import streamlit as st
 from config import get_settings
+from ui.styles import get_custom_css
 
 
 def render_debug_page() -> None:
     """Render the debug page."""
     settings = get_settings()
 
+    st.markdown(get_custom_css(), unsafe_allow_html=True)
+
+    st.markdown(
+        """
+        <div class="main-header">
+            <h1>🔧 Debug Panel</h1>
+            <p>Developer diagnostics and system state.</p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
     if not settings.enable_debug:
         st.warning(
-            "Debug mode is disabled. Set ENABLE_DEBUG=true in .env to enable."
+            "Debug mode is disabled. Set ENABLE_DEBUG=true in secrets to enable."
         )
         return
 
-    st.title("Debug Panel")
+    st.markdown("**System Status**")
 
-    st.markdown("**System State**")
+    col1, col2 = st.columns(2)
 
-    if "engine" in st.session_state:
-        st.success("ConversationEngine: Initialized")
-    else:
-        st.error("ConversationEngine: Not initialized")
+    with col1:
+        if "engine" in st.session_state:
+            st.success("ConversationEngine: Active")
+        else:
+            st.error("ConversationEngine: Inactive")
 
-    if "db" in st.session_state:
-        st.success("Database: Connected")
-    else:
-        st.error("Database: Not connected")
+        if "db" in st.session_state:
+            st.success("Database: Connected")
+        else:
+            st.error("Database: Disconnected")
 
-    if "vector_store" in st.session_state:
-        st.success(f"VectorStore: {st.session_state.vector_store.count} documents")
-    else:
-        st.error("VectorStore: Not initialized")
+    with col2:
+        if "vector_store" in st.session_state:
+            st.success(f"VectorStore: {st.session_state.vector_store.count} docs")
+        else:
+            st.error("VectorStore: Inactive")
 
     st.markdown("---")
-    st.markdown("**Session State Keys**")
+    st.markdown("**Session State**")
     st.json(list(st.session_state.keys()))
 
     if "messages" in st.session_state:
-        st.markdown("---")
         st.markdown(f"**Messages: {len(st.session_state.messages)}**")
-        for i, msg in enumerate(st.session_state.messages[-5:]):
+        for msg in st.session_state.messages[-5:]:
             st.text(f"[{msg['role']}] {msg['content'][:100]}...")
 
     st.markdown("---")
     st.markdown("**Configuration**")
     st.json({
-        "ollama_model": settings.ollama_model,
+        "groq_model": settings.groq_model,
         "temperature": settings.temperature,
         "rag_top_k": settings.rag_top_k,
         "risk_threshold": settings.risk_threshold,
-        "short_term_max_messages": settings.short_term_max_messages,
     })

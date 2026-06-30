@@ -3,16 +3,22 @@ Mood tracker visualization page.
 """
 
 import streamlit as st
+from ui.styles import get_custom_css
 from ui.components.mood_chart import render_mood_chart
 
 
 def render_mood_tracker_page() -> None:
     """Render the mood tracker page."""
-    st.title("Mood Tracker")
+    st.markdown(get_custom_css(), unsafe_allow_html=True)
 
     st.markdown(
-        "Track your emotional well-being over time. "
-        "Your mood is automatically recorded during conversations."
+        """
+        <div class="main-header">
+            <h1>📊 Mood Tracker</h1>
+            <p>Track your emotional well-being over time.</p>
+        </div>
+        """,
+        unsafe_allow_html=True,
     )
 
     if "engine" not in st.session_state:
@@ -38,4 +44,11 @@ def render_mood_tracker_page() -> None:
         st.info("No mood history available yet.")
 
     st.markdown("---")
-    st.markdown("**Mood Scale:** 1 (Very Low) — 5 (Neutral) — 10 (Very High)")
+    st.markdown(
+        """
+        **Mood Scale**
+        - 1-3: Low — You might be having a tough time
+        - 4-6: Moderate — Feeling okay, maybe some ups and downs
+        - 7-10: High — Feeling good or great
+        """
+    )

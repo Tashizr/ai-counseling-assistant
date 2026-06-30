@@ -21,12 +21,12 @@ def render_chat_message(
         risk_level: Optional risk level.
     """
     if role == "user":
-        with st.chat_message("user"):
+        with st.chat_message("user", avatar="🧑"):
             st.markdown(content)
             if emotion:
-                st.caption(f"Detected emotion: {emotion}")
+                st.caption(f"Feeling: {emotion}")
     else:
-        with st.chat_message("assistant"):
+        with st.chat_message("assistant", avatar="💬"):
             st.markdown(content)
             if risk_level and risk_level != "low":
                 risk_class = f"risk-{risk_level}"
@@ -55,10 +55,8 @@ def render_disclaimer() -> None:
     """Render the identity disclaimer banner."""
     st.markdown(
         '<div class="disclaimer-box">'
-        "<strong>Note:</strong> I'm an AI counseling assistant — "
-        "not a licensed therapist or mental health professional. "
-        "I'm here to listen and support, but I cannot provide diagnosis, "
-        "treatment, or emergency care."
+        "🤖 I'm an AI counseling assistant — not a licensed therapist or mental health professional. "
+        "I'm here to listen and support, but I cannot provide diagnosis, treatment, or emergency care."
         "</div>",
         unsafe_allow_html=True,
     )
