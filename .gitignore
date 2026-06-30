@@ -13,5 +13,4 @@ build/
 .mypy_cache/
 data/
 logs/
-PROMPTS/
 test_phase1.py
