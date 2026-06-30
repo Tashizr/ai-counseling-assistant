@@ -1,0 +1,42 @@
+[
+    {
+        "text": "Cognitive Behavioral Therapy (CBT) is a structured, time-limited psychotherapy that aims to solve current problems by changing unhelpful thinking and behavior patterns. CBT is based on the cognitive model: the way we perceive situations influences how we feel emotionally. Cognitive distortions are irrational, negative thought patterns that contribute to anxiety and depression. Common distortions include all-or-nothing thinking, catastrophizing, and mind reading. CBT teaches individuals to identify, challenge, and replace these distortions with more realistic thoughts.",
+        "source": "cbt_intro",
+        "metadata": {"topic": "CBT", "type": "educational"}
+    },
+    {
+        "text": "Dialectical Behavior Therapy (DBT) is a comprehensive cognitive-behavioral treatment developed by Dr. Marsha Linehan. DBT balances acceptance and change strategies. It teaches four key skill sets: mindfulness (being present in the moment), distress tolerance (surviving crises without making things worse), emotion regulation (managing and changing emotions), and interpersonal effectiveness (maintaining relationships while asserting needs). DBT was originally developed for borderline personality disorder but has been adapted for many conditions.",
+        "source": "dbt_intro",
+        "metadata": {"topic": "DBT", "type": "educational"}
+    },
+    {
+        "text": "Active listening is a communication technique that requires the listener to fully concentrate, understand, respond, and remember what is being said. Key components include: paying full attention, showing that you are listening through body language, providing feedback by paraphrasing, deferring judgment, and responding appropriately. Active listening in counseling helps build rapport, demonstrates empathy, and ensures the client feels heard and understood.",
+        "source": "active_listening",
+        "metadata": {"topic": "communication", "type": "educational"}
+    },
+    {
+        "text": "Crisis intervention is a short-term emergency response designed to stabilize an individual in acute emotional distress. The goal is to restore the person to their previous level of functioning. Key principles include: ensuring immediate safety, providing emotional support, identifying the precipitating event, exploring alternatives, developing an action plan, and connecting with appropriate resources. If someone expresses suicidal ideation, always take it seriously, listen without judgment, and connect them with professional crisis services immediately.",
+        "source": "crisis_intervention",
+        "metadata": {"topic": "crisis", "type": "educational"}
+    },
+    {
+        "text": "Motivational Interviewing (MI) is a collaborative conversation style for strengthening a person's own motivation and commitment to change. Developed by William Miller and Stephen Rollnick, MI is based on four principles: expressing empathy, developing discrepancy between current behavior and goals, rolling with resistance, and supporting self-efficacy. MI is effective for health behavior change, substance use, and mental health treatment.",
+        "source": "motivational_interviewing",
+        "metadata": {"topic": "MI", "type": "educational"}
+    },
+    {
+        "text": "Mindfulness-based stress reduction (MBSR) is a structured program developed by Jon Kabat-Zinn that uses mindfulness meditation to relieve suffering associated with stress, anxiety, depression, and pain. The program teaches participants to pay attention to the present moment without judgment. Core practices include body scan meditation, sitting meditation, and mindful yoga. Research shows MBSR reduces symptoms of anxiety, depression, and chronic pain.",
+        "source": "mbsr_intro",
+        "metadata": {"topic": "mindfulness", "type": "educational"}
+    },
+    {
+        "text": "Emotional intelligence (EI) is the ability to recognize, understand, and manage our own emotions, as well as recognize, understand, and influence the emotions of others. The five components of EI are: self-awareness (recognizing your emotions), self-regulation (managing your emotions), motivation (internal drive), empathy (understanding others' emotions), and social skills (managing relationships). Higher emotional intelligence is associated with better mental health, stronger relationships, and greater success.",
+        "source": "emotional_intelligence",
+        "metadata": {"topic": "EI", "type": "educational"}
+    },
+    {
+        "text": "Positive psychology is the scientific study of what makes life most worth living. Founded by Martin Seligman, it focuses on strengths, virtues, and factors that contribute to happiness and flourishing. Key concepts include: the PERMA model (Positive Emotion, Engagement, Relationships, Meaning, Accomplishment), character strengths, gratitude practice, flow states, and resilience. Research in positive psychology shows that practicing gratitude, kindness, and identifying personal strengths significantly improves well-being.",
+        "source": "positive_psychology",
+        "metadata": {"topic": "positive psychology", "type": "educational"}
+    }
+]

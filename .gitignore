@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+.env
+*.db
+chroma_db/
+models/
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+data/
+logs/
+PROMPTS/
+test_phase1.py
