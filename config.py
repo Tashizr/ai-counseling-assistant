@@ -16,6 +16,9 @@ logger = logging.getLogger(__name__)
 
 load_dotenv()
 
+_VALID_LOG_LEVELS = {"DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"}
+_VALID_RISK_LEVELS = {"low", "moderate", "high", "critical"}
+
 
 def _get_secret(key: str, default: str = "") -> str:
     """Read a value from Streamlit secrets or environment, falling back to default."""
