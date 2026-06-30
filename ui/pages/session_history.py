@@ -1,5 +1,5 @@
 """
-Session history page for viewing past conversations.
+Session history page.
 """
 
 import streamlit as st
@@ -7,47 +7,33 @@ from ui.styles import get_custom_css
 
 
 def render_session_history_page() -> None:
-    """Render the session history page."""
+    """Render session history."""
     st.markdown(get_custom_css(), unsafe_allow_html=True)
 
     st.markdown(
-        """
-        <div class="main-header">
-            <h1>📋 Sessions</h1>
-            <p>Review your past conversations.</p>
-        </div>
-        """,
+        '<div class="main-header"><h1>📋 Sessions</h1>'
+        '<p>Past conversations.</p></div>',
         unsafe_allow_html=True,
     )
 
     if "session_manager" not in st.session_state:
-        st.warning("Please initialize the application first.")
+        st.warning("Initialize the application first.")
         return
 
-    session_mgr = st.session_state.session_manager
-    user_id = st.session_state.get("user_id", "default_user")
+    user_id = st.session_state.get("user_id", "default")
+    convs = st.session_state.session_manager.get_recent_conversations(user_id, 20)
 
-    conversations = session_mgr.get_recent_conversations(user_id, limit=20)
-
-    if not conversations:
+    if not convs:
         st.info("No past conversations yet.")
         return
 
-    for conv in conversations:
-        with st.expander(
-            f"{conv['started_at'][:10]} | Risk: {conv.get('risk_level_max', 'low')}"
-        ):
-            if conv.get("summary"):
-                st.write(conv["summary"])
-            else:
-                st.caption("No summary available")
-
-            col1, col2 = st.columns(2)
-            with col1:
-                if conv.get("mood_start"):
-                    st.metric("Start", f"{conv['mood_start']}/10")
-            with col2:
-                if conv.get("mood_end"):
-                    st.metric("End", f"{conv['mood_end']}/10")
-
-            st.caption(f"Started: {conv['started_at']}")
+    for c in convs:
+        with st.expander(f"{c['started_at'][:10]} — {c.get('risk_level_max', 'low')}"):
+            if c.get("summary"):
+                st.write(c["summary"])
+            cols = st.columns(2)
+            if c.get("mood_start"):
+                cols[0].metric("Start", f"{c['mood_start']}/10")
+            if c.get("mood_end"):
+                cols[1].metric("End", f"{c['mood_end']}/10")
+            st.caption(c["started_at"])

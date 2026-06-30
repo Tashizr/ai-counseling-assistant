@@ -4,259 +4,229 @@ Custom CSS styling for the Streamlit UI.
 
 
 def get_custom_css() -> str:
-    """Return custom CSS for the counseling assistant UI.
-
-    Returns:
-        CSS string for Streamlit injection.
-    """
+    """Return custom CSS for the counseling assistant UI."""
     return """
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 
-    /* Global - Dark theme */
+    /* Base */
     .stApp {
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-        background-color: #1a1a1a !important;
-        color: #e0e0e0;
+        font-family: 'Inter', sans-serif;
+        background: #171717;
     }
-    section[data-testid="stSidebar"] {
-        background-color: #0d0d0d !important;
-    }
-    .stDeployButton { display: none; }
-    header[data-testid="stHeader"] {
-        background-color: #1a1a1a !important;
-    }
+    header[data-testid="stHeader"] { background: #171717; }
     footer { visibility: hidden; }
+    .stDeployButton { display: none; }
+    #MainMenu { visibility: hidden; }
 
-    /* Main container */
+    /* Layout */
     .block-container {
-        padding-top: 2rem !important;
-        max-width: 800px !important;
+        padding-top: 1.5rem !important;
+        padding-bottom: 4rem !important;
+        max-width: 760px !important;
     }
 
     /* Header */
     .main-header {
-        background: linear-gradient(135deg, #1a1a1a 0%, #2d1b1b 100%);
-        border: 1px solid #333;
-        padding: 1.5rem 2rem;
-        border-radius: 0.75rem;
-        color: #e0e0e0;
-        margin-bottom: 1.5rem;
+        background: #1e1e1e;
+        border: 1px solid #2a2a2a;
+        padding: 1rem 1.25rem;
+        border-radius: 0.5rem;
+        margin-bottom: 1rem;
     }
     .main-header h1 {
-        color: #f5f5f5 !important;
-        font-size: 1.5rem;
+        color: #e8e8e8 !important;
+        font-size: 1.15rem;
         font-weight: 600;
         margin: 0;
+        line-height: 1.3;
     }
     .main-header p {
-        color: #888;
-        font-size: 0.85rem;
-        margin: 0.5rem 0 0 0;
+        color: #666;
+        font-size: 0.78rem;
+        margin: 0.25rem 0 0 0;
     }
 
-    /* Disclaimer - Subtle dark */
+    /* Disclaimer */
     .disclaimer-box {
-        background-color: #1e1e1e;
-        border: 1px solid #333;
-        border-left: 3px solid #b71c1c;
-        border-radius: 0.5rem;
-        padding: 0.75rem 1rem;
-        margin-bottom: 1rem;
-        color: #bbb;
-        font-size: 0.82rem;
-        line-height: 1.5;
+        background: #1c1c1c;
+        border: 1px solid #2a2a2a;
+        border-left: 2px solid #555;
+        border-radius: 0.35rem;
+        padding: 0.5rem 0.75rem;
+        margin-bottom: 0.75rem;
+        color: #888;
+        font-size: 0.75rem;
+        line-height: 1.45;
     }
 
-    /* Crisis - Red accent */
+    /* Crisis */
     .crisis-box {
-        background-color: #2d1111;
-        border: 1px solid #5c1a1a;
-        border-left: 3px solid #ef5350;
-        border-radius: 0.5rem;
-        padding: 0.75rem 1rem;
-        margin-bottom: 1rem;
-        color: #ef9a9a;
-        font-size: 0.82rem;
-        line-height: 1.5;
+        background: #1f1414;
+        border: 1px solid #3d1c1c;
+        border-left: 2px solid #b71c1c;
+        border-radius: 0.35rem;
+        padding: 0.5rem 0.75rem;
+        margin-bottom: 0.75rem;
+        color: #cc8888;
+        font-size: 0.75rem;
+        line-height: 1.45;
     }
 
-    /* Chat bubbles - ChatGPT style */
+    /* Chat messages */
     .stChatMessage {
-        background-color: transparent !important;
+        background: transparent !important;
         border: none !important;
         border-radius: 0 !important;
-        padding: 1rem 0 !important;
+        padding: 0.75rem 0 !important;
         box-shadow: none !important;
     }
-    .stChatMessage[data-testid="stChatMessage"]:nth-child(odd) {
-        background-color: #1a1a1a !important;
-    }
-    .stChatMessage[data-testid="stChatMessage"]:nth-child(even) {
-        background-color: #212121 !important;
-    }
+    .stChatMessage[data-testid="stChatMessage"]:nth-child(odd) { background: #171717; }
+    .stChatMessage[data-testid="stChatMessage"]:nth-child(even) { background: #1e1e1e; }
     div[data-testid="stChatMessageContent"] {
-        color: #e0e0e0 !important;
-        font-size: 0.95rem;
-        line-height: 1.6;
+        color: #d4d4d4 !important;
+        font-size: 0.88rem;
+        line-height: 1.55;
     }
 
-    /* Chat input - ChatGPT style */
+    /* Chat input */
     .stChatInput {
-        background-color: #2f2f2f !important;
-        border: 1px solid #424242 !important;
-        border-radius: 0.75rem !important;
+        background: #2a2a2a !important;
+        border: 1px solid #3a3a3a !important;
+        border-radius: 0.5rem !important;
     }
     .stChatInput:focus-within {
-        border-color: #b71c1c !important;
-        box-shadow: 0 0 0 1px #b71c1c !important;
+        border-color: #555 !important;
     }
-    .stChatInput textarea {
-        color: #e0e0e0 !important;
-        background-color: transparent !important;
-    }
+    .stChatInput textarea { color: #d4d4d4 !important; }
 
     /* Sidebar */
     [data-testid="stSidebar"] {
-        background-color: #0d0d0d !important;
+        background: #111 !important;
         border-right: 1px solid #222;
     }
-    [data-testid="stSidebar"] .stMarkdown p,
-    [data-testid="stSidebar"] .stMarkdown li,
-    [data-testid="stSidebar"] .stMarkdown span {
-        color: #888 !important;
-    }
     [data-testid="stSidebar"] .stRadio > div > label {
-        padding: 0.5rem 0.75rem;
-        border-radius: 0.5rem;
-        color: #999 !important;
-        transition: all 0.2s;
+        padding: 0.4rem 0.6rem;
+        border-radius: 0.35rem;
+        color: #777 !important;
+        font-size: 0.82rem;
     }
     [data-testid="stSidebar"] .stRadio > div > label:hover {
-        background: rgba(255,255,255,0.05);
-        color: #e0e0e0 !important;
-    }
-    [data-testid="stSidebar"] .stRadio > div > label[data-checked="true"] {
-        background: rgba(183, 28, 28, 0.15);
-        color: #ef5350 !important;
+        background: rgba(255,255,255,0.04);
+        color: #ccc !important;
     }
 
     /* Risk badges */
     .risk-badge {
         display: inline-block;
-        padding: 0.2rem 0.6rem;
-        border-radius: 2rem;
-        font-size: 0.7rem;
+        padding: 0.15rem 0.5rem;
+        border-radius: 1rem;
+        font-size: 0.65rem;
         font-weight: 600;
-        letter-spacing: 0.5px;
+        letter-spacing: 0.3px;
         text-transform: uppercase;
     }
-    .risk-low { background: #1b2e1b; color: #66bb6a; }
-    .risk-moderate { background: #2e2a1b; color: #ffa726; }
-    .risk-high { background: #2e1b1b; color: #ef5350; }
-    .risk-critical { background: #b71c1c; color: white; }
+    .risk-low { background: #162016; color: #5a9a5a; }
+    .risk-moderate { background: #201c10; color: #b8944a; }
+    .risk-high { background: #201414; color: #c45050; }
+    .risk-critical { background: #5c1a1a; color: #ff8a8a; }
 
     /* Metrics */
     [data-testid="stMetric"] {
-        background-color: #212121 !important;
-        border: 1px solid #333;
-        padding: 1rem;
-        border-radius: 0.5rem;
+        background: #1e1e1e;
+        border: 1px solid #2a2a2a;
+        padding: 0.6rem 0.75rem;
+        border-radius: 0.35rem;
     }
-    [data-testid="stMetric"] label {
-        color: #888 !important;
-    }
+    [data-testid="stMetric"] label { color: #666 !important; font-size: 0.7rem !important; }
     [data-testid="stMetric"] div[data-testid="stMetricValue"] {
-        color: #e0e0e0 !important;
+        color: #d4d4d4 !important;
+        font-size: 1rem !important;
     }
 
     /* Buttons */
     .stButton > button {
-        background-color: #b71c1c !important;
-        color: white !important;
+        background: #b71c1c !important;
+        color: #fff !important;
         border: none !important;
-        border-radius: 0.5rem;
+        border-radius: 0.35rem;
+        font-size: 0.82rem;
         font-weight: 500;
-        transition: all 0.2s;
+        padding: 0.35rem 1rem;
     }
-    .stButton > button:hover {
-        background-color: #d32f2f !important;
-        transform: translateY(-1px);
-    }
+    .stButton > button:hover { background: #c62828 !important; }
 
     /* Tabs */
     .stTabs [data-baseweb="tab-list"] {
-        background-color: #1a1a1a;
-        border-bottom: 1px solid #333;
+        background: #1a1a1a;
+        border-bottom: 1px solid #2a2a2a;
         gap: 0;
     }
     .stTabs [data-baseweb="tab"] {
-        color: #888 !important;
+        color: #666 !important;
         border-radius: 0;
         border-bottom: 2px solid transparent;
+        font-size: 0.82rem;
     }
     .stTabs [data-baseweb="tab"][aria-selected="true"] {
-        color: #e0e0e0 !important;
+        color: #d4d4d4 !important;
         border-bottom-color: #b71c1c;
     }
 
     /* Expander */
     .streamlit-expanderHeader {
-        background-color: #212121 !important;
-        border: 1px solid #333;
-        border-radius: 0.5rem;
-        color: #ccc !important;
+        background: #1e1e1e !important;
+        border: 1px solid #2a2a2a;
+        border-radius: 0.35rem;
+        color: #aaa !important;
+        font-size: 0.82rem;
     }
 
-    /* Text inputs */
+    /* Text/Number inputs */
     .stTextInput > div > div > input,
     .stNumberInput > div > div > input {
-        background-color: #2f2f2f !important;
-        color: #e0e0e0 !important;
-        border: 1px solid #424242 !important;
-        border-radius: 0.5rem;
-    }
-
-    /* Success/Error/Warning boxes */
-    .stAlert {
-        background-color: #1e1e1e !important;
+        background: #252525 !important;
+        color: #d4d4d4 !important;
         border: 1px solid #333 !important;
-        border-radius: 0.5rem;
+        border-radius: 0.35rem;
     }
 
-    /* Divider */
-    hr {
-        border-color: #333 !important;
+    /* Alerts */
+    .stAlert {
+        background: #1a1a1a !important;
+        border: 1px solid #2a2a2a !important;
+        border-radius: 0.35rem;
+        font-size: 0.82rem;
     }
+
+    /* Dividers */
+    hr { border-color: #252525 !important; margin: 0.75rem 0 !important; }
 
     /* Scrollbar */
-    ::-webkit-scrollbar {
-        width: 6px;
-    }
-    ::-webkit-scrollbar-track {
-        background: #1a1a1a;
-    }
-    ::-webkit-scrollbar-thumb {
-        background: #444;
-        border-radius: 3px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-        background: #555;
-    }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
 
-    /* Welcome message */
+    /* Welcome */
     .welcome-container {
         text-align: center;
-        padding: 4rem 2rem;
-        color: #555;
+        padding: 3rem 1rem;
+        color: #444;
     }
     .welcome-container h3 {
-        color: #777;
+        color: #555;
         font-weight: 400;
+        font-size: 1rem;
     }
     .welcome-container p {
-        color: #555;
-        font-size: 0.9rem;
+        color: #444;
+        font-size: 0.8rem;
     }
+
+    /* File uploader */
+    .stFileUploader { border: 1px solid #333; border-radius: 0.35rem; padding: 0.5rem; }
+
+    /* Selectbox */
+    .stSelectbox > div > div { background: #252525 !important; color: #d4d4d4 !important; }
     </style>
     """
