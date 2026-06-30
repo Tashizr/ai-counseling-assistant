@@ -13,8 +13,8 @@ def render_session_history_page() -> None:
     st.markdown(
         """
         <div class="main-header">
-            <h1>📋 Session History</h1>
-            <p>Review your past conversations and progress.</p>
+            <h1>📋 Sessions</h1>
+            <p>Review your past conversations.</p>
         </div>
         """,
         unsafe_allow_html=True,
@@ -30,16 +30,14 @@ def render_session_history_page() -> None:
     conversations = session_mgr.get_recent_conversations(user_id, limit=20)
 
     if not conversations:
-        st.info("No past conversations yet. Start chatting to build your history!")
+        st.info("No past conversations yet.")
         return
 
     for conv in conversations:
         with st.expander(
-            f"🗓️ {conv['started_at'][:10]} | "
-            f"Risk: {conv.get('risk_level_max', 'low')}"
+            f"{conv['started_at'][:10]} | Risk: {conv.get('risk_level_max', 'low')}"
         ):
             if conv.get("summary"):
-                st.markdown("**Summary:**")
                 st.write(conv["summary"])
             else:
                 st.caption("No summary available")
@@ -47,11 +45,9 @@ def render_session_history_page() -> None:
             col1, col2 = st.columns(2)
             with col1:
                 if conv.get("mood_start"):
-                    st.metric("Starting Mood", f"{conv['mood_start']}/10")
+                    st.metric("Start", f"{conv['mood_start']}/10")
             with col2:
                 if conv.get("mood_end"):
-                    st.metric("Ending Mood", f"{conv['mood_end']}/10")
+                    st.metric("End", f"{conv['mood_end']}/10")
 
             st.caption(f"Started: {conv['started_at']}")
-            if conv.get("ended_at"):
-                st.caption(f"Ended: {conv['ended_at']}")

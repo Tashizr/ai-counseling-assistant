@@ -47,8 +47,8 @@ def render_mood_tracker_page() -> None:
     st.markdown(
         """
         **Mood Scale**
-        - 1-3: Low — You might be having a tough time
-        - 4-6: Moderate — Feeling okay, maybe some ups and downs
-        - 7-10: High — Feeling good or great
+        - 1-3: Low — Having a tough time
+        - 4-6: Moderate — Some ups and downs
+        - 7-10: High — Feeling good
         """
     )

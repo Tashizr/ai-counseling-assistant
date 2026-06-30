@@ -14,7 +14,7 @@ def render_knowledge_base_page() -> None:
         """
         <div class="main-header">
             <h1>📚 Knowledge Base</h1>
-            <p>Educational content used for retrieval-augmented generation.</p>
+            <p>Educational content for retrieval-augmented generation.</p>
         </div>
         """,
         unsafe_allow_html=True,
@@ -25,18 +25,13 @@ def render_knowledge_base_page() -> None:
 
         col1, col2 = st.columns(2)
         with col1:
-            st.metric("Total Documents", vs.count)
+            st.metric("Documents", vs.count)
         with col2:
             st.metric("Collection", "counseling_knowledge")
 
         st.markdown("---")
 
-        st.markdown("**Add Documents**")
-        uploaded_file = st.file_uploader(
-            "Upload a text or JSON file",
-            type=["txt", "json"],
-            help="Upload educational content to add to the knowledge base",
-        )
+        uploaded_file = st.file_uploader("Upload file", type=["txt", "json"])
 
         if uploaded_file:
             content = uploaded_file.read().decode("utf-8")
@@ -49,31 +44,17 @@ def render_knowledge_base_page() -> None:
 
                 cleaned = cleaner.clean(content)
                 if cleaned:
-                    chunks = chunker.chunk(
-                        cleaned,
-                        source=uploaded_file.name,
-                    )
+                    chunks = chunker.chunk(cleaned, source=uploaded_file.name)
                     texts = [c.text for c in chunks]
                     vs.add_documents(
                         texts=texts,
                         metadatas=[{"source": uploaded_file.name} for _ in texts],
                     )
-                    st.success(f"Added {len(texts)} chunks from {uploaded_file.name}")
+                    st.success(f"Added {len(texts)} chunks")
                 else:
-                    st.error("File content was empty after cleaning")
+                    st.error("File was empty after cleaning")
     else:
-        st.info("Vector store not initialized. Please run the application first.")
+        st.info("Vector store not initialized.")
 
     st.markdown("---")
-    st.markdown(
-        """
-        **Supported Topics**
-        - CBT & DBT
-        - Crisis Intervention
-        - Motivational Interviewing
-        - Emotional Intelligence
-        - Active Listening
-        - Positive Psychology
-        - Mindfulness
-        """
-    )
+    st.markdown("**Topics:** CBT, DBT, Crisis Intervention, MI, EI, Active Listening, Mindfulness")

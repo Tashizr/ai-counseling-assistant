@@ -11,18 +11,6 @@ def render_chat_page() -> None:
     """Render the main chat interface."""
     st.markdown(get_custom_css(), unsafe_allow_html=True)
 
-    st.markdown(
-        """
-        <div class="main-header">
-            <h1>💬 Let's Talk</h1>
-            <p>A safe space to share what's on your mind. I'm here to listen.</p>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-    render_disclaimer()
-
     if "messages" not in st.session_state:
         st.session_state.messages = []
 
@@ -30,13 +18,15 @@ def render_chat_page() -> None:
         st.warning("Please initialize the application first.")
         return
 
+    render_disclaimer()
+
     if not st.session_state.messages:
         st.markdown(
             """
-            <div style="text-align: center; padding: 3rem 1rem; color: #888;">
-                <div style="font-size: 3rem; margin-bottom: 1rem;">🫂</div>
-                <h3 style="color: #555; font-weight: 500;">How are you feeling today?</h3>
-                <p style="font-size: 0.9rem;">Type a message below to start our conversation.</p>
+            <div class="welcome-container">
+                <div style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;">💬</div>
+                <h3>How can I help you today?</h3>
+                <p>I'm here to listen. Share whatever's on your mind.</p>
             </div>
             """,
             unsafe_allow_html=True,
@@ -50,7 +40,7 @@ def render_chat_page() -> None:
             risk_level=msg.get("risk_level"),
         )
 
-    user_input = st.chat_input("Share what's on your mind...")
+    user_input = st.chat_input("Message...")
 
     if user_input:
         st.session_state.messages.append({
@@ -59,7 +49,7 @@ def render_chat_page() -> None:
         })
         render_chat_message(role="user", content=user_input)
 
-        with st.spinner("Listening..."):
+        with st.spinner(""):
             result = st.session_state.engine.process_message(user_input)
 
         st.session_state.messages.append({

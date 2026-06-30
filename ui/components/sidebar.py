@@ -16,55 +16,44 @@ def render_sidebar() -> str:
 
     with st.sidebar:
         st.markdown(
-            f"""
-            <div style="text-align: center; padding: 1rem 0;">
-                <div style="font-size: 2.5rem;">🧠</div>
-                <h2 style="color: white; margin: 0; font-size: 1.1rem; font-weight: 600;">
-                    AI Counseling
-                </h2>
-                <p style="color: #888; font-size: 0.75rem; margin: 0.25rem 0 0 0;">
-                    Safe space for support
-                </p>
+            """
+            <div style="padding: 0.5rem 0 1rem 0; border-bottom: 1px solid #222; margin-bottom: 1rem;">
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <span style="font-size: 1.2rem;">🧠</span>
+                    <span style="color: #e0e0e0; font-size: 0.95rem; font-weight: 600;">
+                        AI Counseling
+                    </span>
+                </div>
             </div>
             """,
             unsafe_allow_html=True,
         )
 
-        st.markdown("---")
-
         page = st.radio(
             "Navigate",
-            ["💬 Chat", "📊 Mood Tracker", "📋 Session History", "🧠 Memory",
+            ["💬 Chat", "📊 Mood Tracker", "📋 Sessions", "🧠 Memory",
              "📚 Knowledge Base", "⚙️ Settings", "🔧 Debug"],
             label_visibility="collapsed",
         )
 
-        st.markdown("---")
+        st.markdown("<br><br>", unsafe_allow_html=True)
 
         st.markdown(
             """
-            <div style="padding: 0.5rem; font-size: 0.75rem; color: #666; line-height: 1.4;">
-                <strong style="color: #999;">Reminder</strong><br>
-                I'm an AI assistant for educational purposes. Not a replacement for professional care.
+            <div style="padding: 0.75rem; background: #1a1111; border-radius: 0.5rem;
+                        border: 1px solid #332222; font-size: 0.72rem; color: #888;
+                        line-height: 1.4;">
+                <span style="color: #b71c1c;">●</span>
+                AI assistant — not a licensed therapist.
             </div>
             """,
             unsafe_allow_html=True,
         )
 
-        st.markdown("<br>", unsafe_allow_html=True)
-
-        st.markdown(
-            '<div style="text-align: center; font-size: 0.7rem; color: #555;">'
-            'Local-first | Privacy-focused'
-            '</div>',
-            unsafe_allow_html=True,
-        )
-
-    # Clean page name for routing
     page_map = {
         "💬 Chat": "Chat",
         "📊 Mood Tracker": "Mood Tracker",
-        "📋 Session History": "Session History",
+        "📋 Sessions": "Session History",
         "🧠 Memory": "Memory Viewer",
         "📚 Knowledge Base": "Knowledge Base",
         "⚙️ Settings": "Settings",
